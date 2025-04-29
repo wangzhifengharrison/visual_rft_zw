@@ -1,0 +1,29 @@
+2
+4
+gadi-gpu-v100-0039.gadi.nci.org.au
+2
+4
+gadi-gpu-v100-0039.gadi.nci.org.au
+Start running basic DDP example with process rank 0 and GPU ID 0 on host gadi-gpu-v100-0039.gadi.nci.org.au.
+Start running basic DDP example with process rank 1 and GPU ID 1 on host gadi-gpu-v100-0039.gadi.nci.org.au.
+Start running basic DDP example with process rank 2 and GPU ID 2 on host gadi-gpu-v100-0039.gadi.nci.org.au.Start running basic DDP example with process rank 3 and GPU ID 3 on host gadi-gpu-v100-0039.gadi.nci.org.au.
+
+Start running basic DDP example with process rank 5 and GPU ID 1 on host gadi-gpu-v100-0046.gadi.nci.org.au.
+Start running basic DDP example with process rank 6 and GPU ID 2 on host gadi-gpu-v100-0046.gadi.nci.org.au.
+Start running basic DDP example with process rank 4 and GPU ID 0 on host gadi-gpu-v100-0046.gadi.nci.org.au.
+Start running basic DDP example with process rank 7 and GPU ID 3 on host gadi-gpu-v100-0046.gadi.nci.org.au.
+
+======================================================================================
+                  Resource Usage on 2025-04-29 15:18:18:
+   Job Id:             140093927.gadi-pbs
+   Project:            kf09
+   Exit Status:        0
+   Service Units:      2.48
+   NCPUs Requested:    96                     NCPUs Used: 96              
+                                           CPU Time Used: 00:01:01        
+   Memory Requested:   256.0GB               Memory Used: 22.34GB         
+   NGPUs Requested:    8                 GPU Utilisation: 34%             
+                                         GPU Memory Used: 3.6GB           
+   Walltime requested: 00:05:00            Walltime Used: 00:00:31        
+   JobFS requested:    800.0GB                JobFS used: 0B              
+======================================================================================

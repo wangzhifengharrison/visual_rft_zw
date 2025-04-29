@@ -1,0 +1,95 @@
+Log path set to: ./logs/humanomni_emotion_emer_1format_withpath_withchoice.txt
+[2025-04-23 11:31:38,446] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-23 11:31:38,448] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-23 11:31:38,448] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-23 11:31:38,448] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The cache directory for DeepSpeed Triton autotune, /home/272/zw4360/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /home/272/zw4360/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.Warning: The cache directory for DeepSpeed Triton autotune, /home/272/zw4360/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.Warning: The cache directory for DeepSpeed Triton autotune, /home/272/zw4360/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+
+
+INFO 04-23 11:31:42 __init__.py:190] Automatically detected platform cuda.
+INFO 04-23 11:31:42 __init__.py:190] Automatically detected platform cuda.
+INFO 04-23 11:31:42 __init__.py:190] Automatically detected platform cuda.
+INFO 04-23 11:31:42 __init__.py:190] Automatically detected platform cuda.
+[2025-04-23 11:31:43,621] [INFO] [comm.py:652:init_distributed] cdb=None
+[2025-04-23 11:31:43,621] [INFO] [comm.py:683:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[2025-04-23 11:31:43,621] [INFO] [comm.py:652:init_distributed] cdb=None
+[2025-04-23 11:31:43,622] [INFO] [comm.py:652:init_distributed] cdb=None
+[2025-04-23 11:31:43,622] [INFO] [comm.py:652:init_distributed] cdb=None
+has image in dataset
+using:  <class 'open_r1.trainer.grpo_trainer.Qwen2VLGRPOTrainer'>
+[2025-04-23 11:31:43,910] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+has image in dataset
+has image in dataset
+has image in dataset
+using:  <class 'open_r1.trainer.grpo_trainer.Qwen2VLGRPOTrainer'>
+using:  <class 'open_r1.trainer.grpo_trainer.Qwen2VLGRPOTrainer'>
+using:  <class 'open_r1.trainer.grpo_trainer.Qwen2VLGRPOTrainer'>
+[2025-04-23 11:31:43,987] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:31:43,988] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:31:43,989] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:31:46,237] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 730, num_elems = 2.44B
+[2025-04-23 11:31:52,390] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:31:52,402] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:31:52,406] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:31:52,408] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:31:53,823] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 1460, num_elems = 4.88B
+[2025-04-23 11:31:58,455] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:31:58,455] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:31:58,455] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:31:58,455] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed info: version=0.15.4, git-hash=unknown, git-branch=unknown
+[2025-04-23 11:31:58,455] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:31:58,469] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+Installed CUDA version 12.5 does not match the version torch was compiled with 12.1 but since the APIs are compatible, accepting this combination
+Installed CUDA version 12.5 does not match the version torch was compiled with 12.1 but since the APIs are compatible, accepting this combination
+Installed CUDA version 12.5 does not match the version torch was compiled with 12.1 but since the APIs are compatible, accepting this combination
+Installed CUDA version 12.5 does not match the version torch was compiled with 12.1 but since the APIs are compatible, accepting this combination
+ninja: no work to do.
+Time to load cpu_adam op: 0.5962400436401367 seconds
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000001, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Time to load cpu_adam op: 0.6576035022735596 seconds
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000001, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Time to load cpu_adam op: 0.666651725769043 seconds
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000001, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Time to load cpu_adam op: 0.6674094200134277 seconds
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000001, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+[2025-04-23 11:31:59,447] [INFO] [logging.py:128:log_dist] [Rank 0] Using DeepSpeed Optimizer param name adamw as basic optimizer
+[2025-04-23 11:31:59,447] [INFO] [logging.py:128:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
+[2025-04-23 11:31:59,531] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Basic Optimizer = DeepSpeedCPUAdam
+[2025-04-23 11:31:59,531] [INFO] [utils.py:59:is_zero_supported_optimizer] Checking ZeRO support for optimizer=DeepSpeedCPUAdam type=<class 'deepspeed.ops.adam.cpu_adam.DeepSpeedCPUAdam'>
+[2025-04-23 11:31:59,531] [INFO] [logging.py:128:log_dist] [Rank 0] Creating fp16 ZeRO stage 3 optimizer, MiCS is enabled False, Hierarchical params gather False
+[2025-04-23 11:31:59,532] [INFO] [logging.py:128:log_dist] [Rank 0] Creating torch.bfloat16 ZeRO stage 3 optimizer
+[2025-04-23 11:31:59,848] [INFO] [utils.py:781:see_memory_usage] Stage 3 initialize beginning
+[2025-04-23 11:31:59,848] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 1.3 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:31:59,848] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 26.83 GB, percent = 7.1%
+[2025-04-23 11:31:59,851] [INFO] [stage3.py:166:__init__] Reduce bucket size 500000000
+[2025-04-23 11:31:59,851] [INFO] [stage3.py:167:__init__] Prefetch bucket size 50000000
+[2025-04-23 11:32:00,148] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
+[2025-04-23 11:32:00,148] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:32:00,148] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 26.83 GB, percent = 7.1%
+Parameter Offload: Total persistent parameters: 686592 in 401 params
+[2025-04-23 11:32:00,480] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
+[2025-04-23 11:32:00,481] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:32:00,481] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 26.83 GB, percent = 7.1%
+[2025-04-23 11:32:00,784] [INFO] [utils.py:781:see_memory_usage] Before creating fp16 partitions
+[2025-04-23 11:32:00,784] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:32:00,785] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 26.83 GB, percent = 7.1%
+[2025-04-23 11:32:02,292] [INFO] [utils.py:781:see_memory_usage] After creating fp16 partitions: 1
+[2025-04-23 11:32:02,293] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:32:02,293] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 35.03 GB, percent = 9.3%
+[2025-04-23 11:32:02,612] [INFO] [utils.py:781:see_memory_usage] Before creating fp32 partitions
+[2025-04-23 11:32:02,613] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:32:02,613] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 36.89 GB, percent = 9.8%
+[2025-04-23 11:32:04,337] [INFO] [utils.py:781:see_memory_usage] After creating fp32 partitions
+[2025-04-23 11:32:04,337] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:32:04,338] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 43.28 GB, percent = 11.5%
+[2025-04-23 11:32:04,635] [INFO] [utils.py:781:see_memory_usage] Before initializing optimizer states
+[2025-04-23 11:32:04,635] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:32:04,635] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 45.36 GB, percent = 12.0%
+[2025-04-23 11:32:10,905] [INFO] [utils.py:781:see_memory_usage] After initializing optimizer states
+[2025-04-23 11:32:10,909] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:32:10,910] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 43.46 GB, percent = 11.5%

@@ -1,0 +1,490 @@
+(Visual-RFT) [zw4360@gadi-gpu-v100-0054 Visual-RFT]$ bash run_grpo_humanomni.sh
+Log path set to: ./logs/humanomni_emotion_emer_1format_withpath_withchoice.txt
+[2025-04-23 11:34:43,781] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-23 11:34:43,782] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-23 11:34:43,783] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-04-23 11:34:43,783] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+Warning: The cache directory for DeepSpeed Triton autotune, /home/272/zw4360/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /home/272/zw4360/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /home/272/zw4360/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /home/272/zw4360/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+INFO 04-23 11:34:47 __init__.py:190] Automatically detected platform cuda.
+INFO 04-23 11:34:47 __init__.py:190] Automatically detected platform cuda.
+INFO 04-23 11:34:47 __init__.py:190] Automatically detected platform cuda.
+INFO 04-23 11:34:47 __init__.py:190] Automatically detected platform cuda.
+[2025-04-23 11:34:49,601] [INFO] [comm.py:652:init_distributed] cdb=None
+[2025-04-23 11:34:49,602] [INFO] [comm.py:652:init_distributed] cdb=None
+[2025-04-23 11:34:49,603] [INFO] [comm.py:652:init_distributed] cdb=None
+[2025-04-23 11:34:49,603] [INFO] [comm.py:683:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[2025-04-23 11:34:49,606] [INFO] [comm.py:652:init_distributed] cdb=None
+has image in dataset
+using:  <class 'open_r1.trainer.grpo_trainer.Qwen2VLGRPOTrainer'>
+[2025-04-23 11:34:49,873] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+has image in dataset
+using: has image in dataset <class 'open_r1.trainer.grpo_trainer.Qwen2VLGRPOTrainer'>
+
+has image in dataset
+[2025-04-23 11:34:49,958] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+using:  <class 'open_r1.trainer.grpo_trainer.Qwen2VLGRPOTrainer'>
+using:  <class 'open_r1.trainer.grpo_trainer.Qwen2VLGRPOTrainer'>
+[2025-04-23 11:34:49,965] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:34:49,965] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:34:52,433] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 730, num_elems = 2.44B
+Loading checkpoint shards:   0%|                                                                                                     Loading checkpoint shards:   0%|                                                                                                     Loading checkpoint shards:   0%|                                                                                                     Loading checkpoint shards:   0%|                                                                                                     Loading checkpoint shards:  50%|███████████████████████████████████████████████                                               | 1/2 [Loading checkpoint shards:  50%|███████████████████████████████████████████████                                               | 1/2 [Loading checkpoint shards:  50%|███████████████████████████████████████████████                                               | 1/2 [Loading checkpoint shards:  50%|███████████████████████████████████████████████                                               | 1/2 [Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:06<00:00,  3.03s/it]
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:06<00:00,  3.03s/it]
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:06<00:00,  3.03s/it]
+[2025-04-23 11:34:58,642] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:34:58,643] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:34:58,657] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:06<00:00,  3.05s/it]
+[2025-04-23 11:34:58,699] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:35:00,652] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 1460, num_elems = 4.88B
+Loading checkpoint shards:   0%|                                                                                                     Loading checkpoint shards:   0%|                                                                                                     Loading checkpoint shards:   0%|                                                                                                     Loading checkpoint shards:   0%|                                                                                                     Loading checkpoint shards:  50%|███████████████████████████████████████████████                                               | 1/2 [Loading checkpoint shards:  50%|███████████████████████████████████████████████                                               | 1/2 [Loading checkpoint shards:  50%|███████████████████████████████████████████████                                               | 1/2 [Loading checkpoint shards:  50%|███████████████████████████████████████████████                                               | 1/2 [Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:03<00:00,  1.71s/it]
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:03<00:00,  1.71s/it]
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:03<00:00,  1.72s/it]
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:03<00:00,  1.72s/it]
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[2025-04-23 11:35:05,118] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+[2025-04-23 11:35:05,160] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:35:05,163] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed info: version=0.15.4, git-hash=unknown, git-branch=unknown
+[2025-04-23 11:35:05,163] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:35:05,167] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+[2025-04-23 11:35:05,177] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+Installed CUDA version 12.5 does not match the version torch was compiled with 12.1 but since the APIs are compatible, accepting this combination
+Using /home/272/zw4360/.cache/torch_extensions/py310_cu121 as PyTorch extensions root...
+Installed CUDA version 12.5 does not match the version torch was compiled with 12.1 but since the APIs are compatible, accepting this combination
+Using /home/272/zw4360/.cache/torch_extensions/py310_cu121 as PyTorch extensions root...
+Installed CUDA version 12.5 does not match the version torch was compiled with 12.1 but since the APIs are compatible, accepting this combination
+Using /home/272/zw4360/.cache/torch_extensions/py310_cu121 as PyTorch extensions root...
+Installed CUDA version 12.5 does not match the version torch was compiled with 12.1 but since the APIs are compatible, accepting this combination
+Using /home/272/zw4360/.cache/torch_extensions/py310_cu121 as PyTorch extensions root...
+Emitting ninja build file /home/272/zw4360/.cache/torch_extensions/py310_cu121/cpu_adam/build.ninja...
+Building extension module cpu_adam...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module cpu_adam...
+Time to load cpu_adam op: 0.584578275680542 seconds
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000001, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Loading extension module cpu_adam...
+Time to load cpu_adam op: 0.5464208126068115 seconds
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000001, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Loading extension module cpu_adam...
+Time to load cpu_adam op: 0.5698292255401611 seconds
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000001, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Loading extension module cpu_adam...
+Time to load cpu_adam op: 0.5926389694213867 seconds
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000001, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+[2025-04-23 11:35:06,011] [INFO] [logging.py:128:log_dist] [Rank 0] Using DeepSpeed Optimizer param name adamw as basic optimizer
+[2025-04-23 11:35:06,011] [INFO] [logging.py:128:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
+[2025-04-23 11:35:06,099] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Basic Optimizer = DeepSpeedCPUAdam
+[2025-04-23 11:35:06,099] [INFO] [utils.py:59:is_zero_supported_optimizer] Checking ZeRO support for optimizer=DeepSpeedCPUAdam type=<class 'deepspeed.ops.adam.cpu_adam.DeepSpeedCPUAdam'>
+[2025-04-23 11:35:06,099] [INFO] [logging.py:128:log_dist] [Rank 0] Creating fp16 ZeRO stage 3 optimizer, MiCS is enabled False, Hierarchical params gather False
+[2025-04-23 11:35:06,099] [INFO] [logging.py:128:log_dist] [Rank 0] Creating torch.bfloat16 ZeRO stage 3 optimizer
+[2025-04-23 11:35:06,327] [INFO] [utils.py:781:see_memory_usage] Stage 3 initialize beginning
+[2025-04-23 11:35:06,328] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 1.3 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:35:06,328] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 26.88 GB, percent = 7.1%
+[2025-04-23 11:35:06,331] [INFO] [stage3.py:166:__init__] Reduce bucket size 500000000
+[2025-04-23 11:35:06,331] [INFO] [stage3.py:167:__init__] Prefetch bucket size 50000000
+[2025-04-23 11:35:06,554] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
+[2025-04-23 11:35:06,555] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:35:06,555] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 26.88 GB, percent = 7.1%
+Parameter Offload: Total persistent parameters: 686592 in 401 params
+[2025-04-23 11:35:06,813] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
+[2025-04-23 11:35:06,813] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:35:06,814] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 26.88 GB, percent = 7.1%
+[2025-04-23 11:35:07,043] [INFO] [utils.py:781:see_memory_usage] Before creating fp16 partitions
+[2025-04-23 11:35:07,043] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:35:07,043] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 26.88 GB, percent = 7.1%
+[2025-04-23 11:35:08,840] [INFO] [utils.py:781:see_memory_usage] After creating fp16 partitions: 1
+[2025-04-23 11:35:08,840] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:35:08,841] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 36.5 GB, percent = 9.7%
+[2025-04-23 11:35:09,099] [INFO] [utils.py:781:see_memory_usage] Before creating fp32 partitions
+[2025-04-23 11:35:09,100] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:35:09,100] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 38.17 GB, percent = 10.1%
+[2025-04-23 11:35:10,802] [INFO] [utils.py:781:see_memory_usage] After creating fp32 partitions
+[2025-04-23 11:35:10,803] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:35:10,803] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 43.33 GB, percent = 11.5%
+[2025-04-23 11:35:11,059] [INFO] [utils.py:781:see_memory_usage] Before initializing optimizer states
+[2025-04-23 11:35:11,059] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:35:11,060] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 45.16 GB, percent = 12.0%
+[2025-04-23 11:35:16,761] [INFO] [utils.py:781:see_memory_usage] After initializing optimizer states
+[2025-04-23 11:35:16,764] [INFO] [utils.py:782:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 1.52 GB         Max_CA 2 GB 
+[2025-04-23 11:35:16,764] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 59.16 GB, percent = 15.7%
+[2025-04-23 11:35:16,765] [INFO] [stage3.py:521:_setup_for_real_optimizer] optimizer state initialized
+[2025-04-23 11:35:19,436] [INFO] [utils.py:781:see_memory_usage] After initializing ZeRO optimizer
+[2025-04-23 11:35:19,437] [INFO] [utils.py:782:see_memory_usage] MA 0.93 GB         Max_MA 1.8 GB         CA 2.45 GB         Max_CA 2 GB 
+[2025-04-23 11:35:19,437] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 68.4 GB, percent = 18.2%
+[2025-04-23 11:35:19,437] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Final Optimizer = DeepSpeedZeroOptimizer_Stage3
+[2025-04-23 11:35:19,438] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed using configured LR scheduler = None
+[2025-04-23 11:35:19,438] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed LR Scheduler = None
+[2025-04-23 11:35:19,438] [INFO] [logging.py:128:log_dist] [Rank 0] step=0, skipped=0, lr=[1e-06], mom=[[0.9, 0.999]]
+[2025-04-23 11:35:19,440] [INFO] [config.py:999:print] DeepSpeedEngine configuration:
+[2025-04-23 11:35:19,440] [INFO] [config.py:1003:print]   activation_checkpointing_config  {
+    "partition_activations": false, 
+    "contiguous_memory_optimization": false, 
+    "cpu_checkpointing": false, 
+    "number_checkpoints": null, 
+    "synchronize_checkpoint_boundary": false, 
+    "profile": false
+}
+[2025-04-23 11:35:19,440] [INFO] [config.py:1003:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True, 'use_gds': False}
+[2025-04-23 11:35:19,440] [INFO] [config.py:1003:print]   amp_enabled .................. False
+[2025-04-23 11:35:19,440] [INFO] [config.py:1003:print]   amp_params ................... False
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   autotuning_config ............ {
+    "enabled": false, 
+    "start_step": null, 
+    "end_step": null, 
+    "metric_path": null, 
+    "arg_mappings": null, 
+    "metric": "throughput", 
+    "model_info": null, 
+    "results_dir": "autotuning_results", 
+    "exps_dir": "autotuning_exps", 
+    "overwrite": true, 
+    "fast": true, 
+    "start_profile_step": 3, 
+    "end_profile_step": 5, 
+    "tuner_type": "gridsearch", 
+    "tuner_early_stopping": 5, 
+    "tuner_num_trials": 50, 
+    "model_info_path": null, 
+    "mp_size": 1, 
+    "max_train_batch_size": null, 
+    "min_train_batch_size": 1, 
+    "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+    "min_train_micro_batch_size_per_gpu": 1, 
+    "num_tuning_micro_batch_sizes": 3
+}
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   bfloat16_enabled ............. True
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   bfloat16_immediate_grad_update  False
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   checkpoint_parallel_write_pipeline  False
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   checkpoint_tag_validation_enabled  True
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   checkpoint_tag_validation_fail  False
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x14e0a89445b0>
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   communication_data_type ...... None
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   curriculum_enabled_legacy .... False
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   curriculum_params_legacy ..... False
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   data_efficiency_enabled ...... False
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   dataloader_drop_last ......... False
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   disable_allgather ............ False
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   dump_state ................... False
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   dynamic_loss_scale_args ...... None
+[2025-04-23 11:35:19,441] [INFO] [config.py:1003:print]   eigenvalue_enabled ........... False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   eigenvalue_gas_boundary_resolution  1
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   eigenvalue_layer_num ......... 0
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   eigenvalue_max_iter .......... 100
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   eigenvalue_stability ......... 1e-06
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   eigenvalue_tol ............... 0.01
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   eigenvalue_verbose ........... False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   elasticity_enabled ........... False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   flops_profiler_config ........ {
+    "enabled": false, 
+    "recompute_fwd_factor": 0.0, 
+    "profile_step": 1, 
+    "module_depth": -1, 
+    "top_modules": 1, 
+    "detailed": true, 
+    "output_file": null
+}
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   fp16_auto_cast ............... None
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   fp16_enabled ................. False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   fp16_master_weights_and_gradients  False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   global_rank .................. 0
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   grad_accum_dtype ............. None
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   gradient_accumulation_steps .. 2
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   gradient_clipping ............ 1.0
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   gradient_predivide_factor .... 1.0
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   graph_harvesting ............. False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   initial_dynamic_scale ........ 1
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   load_universal_checkpoint .... False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   loss_scale ................... 1.0
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   memory_breakdown ............. False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   mics_hierarchial_params_gather  False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   mics_shard_size .............. -1
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') comet=CometConfig(enabled=False, samples_log_interval=100, project=None, workspace=None, api_key=None, experiment_name=None, experiment_key=None, online=None, mode=None) wandb=WandbConfig(enabled=False, group=None, team=None, project='deepspeed') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName')
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   nebula_config ................ {
+    "enabled": false, 
+    "persistent_storage_path": null, 
+    "persistent_time_interval": 100, 
+    "num_of_version_in_retention": 2, 
+    "enable_nebula_load": true, 
+    "load_path": null
+}
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   optimizer_legacy_fusion ...... False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   optimizer_name ............... adamw
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   optimizer_params ............. {'lr': 1e-06, 'betas': [0.9, 0.999], 'eps': 1e-08, 'weight_decay': 0.0}
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0, 'pipe_partitioned': True, 'grad_partitioned': True}
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   pld_enabled .................. False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   pld_params ................... False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   prescale_gradients ........... False
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   scheduler_name ............... None
+[2025-04-23 11:35:19,442] [INFO] [config.py:1003:print]   scheduler_params ............. None
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   seq_parallel_communication_data_type  torch.float32
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   sparse_attention ............. None
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   sparse_gradients_enabled ..... False
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   steps_per_print .............. inf
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   timers_config ................ enabled=True synchronized=True
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   train_batch_size ............. 8
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   train_micro_batch_size_per_gpu  1
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   use_data_before_expert_parallel_  False
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   use_node_local_storage ....... False
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   wall_clock_breakdown ......... False
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   weight_quantization_config ... None
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   world_size ................... 4
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   zero_allow_untested_optimizer  False
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   zero_config .................. stage=3 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=500000000 use_multi_rank_bucket_allreduce=True allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=DeepSpeedZeroOffloadParamConfig(device='cpu', nvme_path=None, buffer_count=5, buffer_size=100000000, max_in_cpu=1000000000, pin_memory=True) offload_optimizer=DeepSpeedZeroOffloadOptimizerConfig(device='cpu', nvme_path=None, buffer_count=4, pin_memory=True, pipeline_read=False, pipeline_write=False, fast_init=False, ratio=1.0) sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=50000000 param_persistence_threshold=100000 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=True use_all_reduce_for_fetch_params=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False mics_shard_size=-1 mics_hierarchical_params_gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   zero_enabled ................. True
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   zero_force_ds_cpu_optimizer .. True
+[2025-04-23 11:35:19,443] [INFO] [config.py:1003:print]   zero_optimization_stage ...... 3
+[2025-04-23 11:35:19,443] [INFO] [config.py:989:print_user_config]   json = {
+    "fp16": {
+        "enabled": false, 
+        "loss_scale": 0, 
+        "loss_scale_window": 1000, 
+        "initial_scale_power": 16, 
+        "hysteresis": 2, 
+        "min_loss_scale": 1
+    }, 
+    "bf16": {
+        "enabled": true
+    }, 
+    "optimizer": {
+        "type": "AdamW", 
+        "params": {
+            "lr": 1e-06, 
+            "betas": [0.9, 0.999], 
+            "eps": 1e-08, 
+            "weight_decay": 0.0
+        }
+    }, 
+    "zero_optimization": {
+        "stage": 3, 
+        "offload_optimizer": {
+            "device": "cpu", 
+            "pin_memory": true
+        }, 
+        "offload_param": {
+            "device": "cpu", 
+            "pin_memory": true
+        }, 
+        "overlap_comm": true, 
+        "contiguous_gradients": true, 
+        "sub_group_size": 1.000000e+09, 
+        "reduce_bucket_size": "auto", 
+        "stage3_prefetch_bucket_size": "auto", 
+        "stage3_param_persistence_threshold": "auto", 
+        "stage3_max_live_parameters": 1.000000e+09, 
+        "stage3_max_reuse_distance": 1.000000e+09, 
+        "gather_16bit_weights_on_model_save": true
+    }, 
+    "gradient_accumulation_steps": 2, 
+    "gradient_clipping": 1.0, 
+    "train_batch_size": 8, 
+    "train_micro_batch_size_per_gpu": 1, 
+    "steps_per_print": inf, 
+    "wall_clock_breakdown": false, 
+    "zero_optimization.reduce_bucket_size": 2.359296e+06, 
+    "zero_optimization.stage3_param_persistence_threshold": 1.536000e+04, 
+    "zero_optimization.stage3_prefetch_bucket_size": 2.123366e+06
+}
+Parameter Offload: Total persistent parameters: 686592 in 401 params
+
+------------------------------------------------------------------------
+Job 139785226 has exceeded memory allocation on node gadi-gpu-v100-0054.gadi.nci.org.au
+Process "pbs_mom", pid 227513, rss 7495680, vmem 195354624
+Process "pbs_mom", pid 227514, rss 4091904, vmem 195354624
+Process "bash", pid 227518, rss 4018176, vmem 24195072
+Process "pbs_demux", pid 227526, rss 2699264, vmem 38903808
+Process "sshd", pid 229455, rss 9428992, vmem 181219328
+Process "sshd", pid 229457, rss 5431296, vmem 181219328
+Process "bash", pid 229458, rss 3969024, vmem 241922048
+Process "bash", pid 229543, rss 3055616, vmem 10252288
+Process "pt_elastic", pid 229565, rss 211963904, vmem 3449462784
+Process "python", pid 229567, rss 17081884672, vmem 49948975104
+Process "python", pid 229568, rss 17183883264, vmem 50494709760
+Process "python", pid 229569, rss 17201512448, vmem 50493652992
+Process "python", pid 229570, rss 17110114304, vmem 50464747520
+Process "nvidia-smi", pid 230314, rss 16216064, vmem 33136640
+------------------------------------------------------------------------
+For more information visit https://opus.nci.org.au/x/SwGRAQ
+------------------------------------------------------------------------
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/scratch/kf09/zw4360/Visual-RFT/src/virft/src/open_r1/grpo.py", line 451, in <module>
+[rank0]:     main(script_args, training_args, model_args)
+[rank0]:   File "/scratch/kf09/zw4360/Visual-RFT/src/virft/src/open_r1/grpo.py", line 440, in main
+[rank0]:     trainer.train()
+[rank0]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
+[rank0]:     return inner_training_loop(
+[rank0]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/transformers/trainer.py", line 2368, in _inner_training_loop
+[rank0]:     model, self.optimizer, self.lr_scheduler = self.accelerator.prepare(
+[rank0]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/accelerate/accelerator.py", line 1440, in prepare
+[rank0]:     result = self._prepare_deepspeed(*args)
+[rank0]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/accelerate/accelerator.py", line 2033, in _prepare_deepspeed
+[rank0]:     engine, optimizer, _, lr_scheduler = ds_initialize(**kwargs)
+[rank0]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank0]:     engine = DeepSpeedEngine(args=args,
+[rank0]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 313, in __init__
+[rank0]:     self._configure_optimizer(optimizer, model_parameters)
+[rank0]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 1302, in _configure_optimizer
+[rank0]:     self.optimizer = self._configure_zero_optimizer(basic_optimizer)
+[rank0]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 1626, in _configure_zero_optimizer
+[rank0]:     optimizer = DeepSpeedZeroOptimizer_Stage3(
+[rank0]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 351, in __init__
+[rank0]:     self._create_fp16_partitions_with_defragmentation(self.trainable_param_groups)
+[rank0]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 738, in _create_fp16_partitions_with_defragmentation
+[rank0]:     self._create_param_groups_fp16_flat_cpu_memory()
+[rank0]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 688, in _create_param_groups_fp16_flat_cpu_memory
+[rank0]:     self.param_groups_fp16_flat_cpu_memory.append(get_accelerator().pin_memory(
+[rank0]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/accelerator/cuda_accelerator.py", line 293, in pin_memory
+[rank0]:     return tensor.pin_memory()
+[rank0]: RuntimeError: CUDA error: invalid argument
+[rank0]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank0]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+[rank0]: Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/scratch/kf09/zw4360/Visual-RFT/src/virft/src/open_r1/grpo.py", line 451, in <module>
+[rank1]:     main(script_args, training_args, model_args)
+[rank1]:   File "/scratch/kf09/zw4360/Visual-RFT/src/virft/src/open_r1/grpo.py", line 440, in main
+[rank1]:     trainer.train()
+[rank1]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
+[rank1]:     return inner_training_loop(
+[rank1]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/transformers/trainer.py", line 2368, in _inner_training_loop
+[rank1]:     model, self.optimizer, self.lr_scheduler = self.accelerator.prepare(
+[rank1]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/accelerate/accelerator.py", line 1440, in prepare
+[rank1]:     result = self._prepare_deepspeed(*args)
+[rank1]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/accelerate/accelerator.py", line 2033, in _prepare_deepspeed
+[rank1]:     engine, optimizer, _, lr_scheduler = ds_initialize(**kwargs)
+[rank1]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank1]:     engine = DeepSpeedEngine(args=args,
+[rank1]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 313, in __init__
+[rank1]:     self._configure_optimizer(optimizer, model_parameters)
+[rank1]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 1302, in _configure_optimizer
+[rank1]:     self.optimizer = self._configure_zero_optimizer(basic_optimizer)
+[rank1]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 1626, in _configure_zero_optimizer
+[rank1]:     optimizer = DeepSpeedZeroOptimizer_Stage3(
+[rank1]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 351, in __init__
+[rank1]:     self._create_fp16_partitions_with_defragmentation(self.trainable_param_groups)
+[rank1]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 738, in _create_fp16_partitions_with_defragmentation
+[rank1]:     self._create_param_groups_fp16_flat_cpu_memory()
+[rank1]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 688, in _create_param_groups_fp16_flat_cpu_memory
+[rank1]:     self.param_groups_fp16_flat_cpu_memory.append(get_accelerator().pin_memory(
+[rank1]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/accelerator/cuda_accelerator.py", line 293, in pin_memory
+[rank1]:     return tensor.pin_memory()
+[rank1]: RuntimeError: CUDA error: invalid argument
+[rank1]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank1]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+[rank1]: Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/scratch/kf09/zw4360/Visual-RFT/src/virft/src/open_r1/grpo.py", line 451, in <module>
+[rank2]:     main(script_args, training_args, model_args)
+[rank2]:   File "/scratch/kf09/zw4360/Visual-RFT/src/virft/src/open_r1/grpo.py", line 440, in main
+[rank2]:     trainer.train()
+[rank2]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
+[rank2]:     return inner_training_loop(
+[rank2]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/transformers/trainer.py", line 2368, in _inner_training_loop
+[rank2]:     model, self.optimizer, self.lr_scheduler = self.accelerator.prepare(
+[rank2]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/accelerate/accelerator.py", line 1440, in prepare
+[rank2]:     result = self._prepare_deepspeed(*args)
+[rank2]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/accelerate/accelerator.py", line 2033, in _prepare_deepspeed
+[rank2]:     engine, optimizer, _, lr_scheduler = ds_initialize(**kwargs)
+[rank2]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank2]:     engine = DeepSpeedEngine(args=args,
+[rank2]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 313, in __init__
+[rank2]:     self._configure_optimizer(optimizer, model_parameters)
+[rank2]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 1302, in _configure_optimizer
+[rank2]:     self.optimizer = self._configure_zero_optimizer(basic_optimizer)
+[rank2]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 1626, in _configure_zero_optimizer
+[rank2]:     optimizer = DeepSpeedZeroOptimizer_Stage3(
+[rank2]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 351, in __init__
+[rank2]:     self._create_fp16_partitions_with_defragmentation(self.trainable_param_groups)
+[rank2]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 738, in _create_fp16_partitions_with_defragmentation
+[rank2]:     self._create_param_groups_fp16_flat_cpu_memory()
+[rank2]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 688, in _create_param_groups_fp16_flat_cpu_memory
+[rank2]:     self.param_groups_fp16_flat_cpu_memory.append(get_accelerator().pin_memory(
+[rank2]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/accelerator/cuda_accelerator.py", line 293, in pin_memory
+[rank2]:     return tensor.pin_memory()
+[rank2]: RuntimeError: CUDA error: invalid argument
+[rank2]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank2]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+[rank2]: Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/scratch/kf09/zw4360/Visual-RFT/src/virft/src/open_r1/grpo.py", line 451, in <module>
+[rank3]:     main(script_args, training_args, model_args)
+[rank3]:   File "/scratch/kf09/zw4360/Visual-RFT/src/virft/src/open_r1/grpo.py", line 440, in main
+[rank3]:     trainer.train()
+[rank3]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/transformers/trainer.py", line 2241, in train
+[rank3]:     return inner_training_loop(
+[rank3]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/transformers/trainer.py", line 2368, in _inner_training_loop
+[rank3]:     model, self.optimizer, self.lr_scheduler = self.accelerator.prepare(
+[rank3]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/accelerate/accelerator.py", line 1440, in prepare
+[rank3]:     result = self._prepare_deepspeed(*args)
+[rank3]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/accelerate/accelerator.py", line 2033, in _prepare_deepspeed
+[rank3]:     engine, optimizer, _, lr_scheduler = ds_initialize(**kwargs)
+[rank3]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank3]:     engine = DeepSpeedEngine(args=args,
+[rank3]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 313, in __init__
+[rank3]:     self._configure_optimizer(optimizer, model_parameters)
+[rank3]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 1302, in _configure_optimizer
+[rank3]:     self.optimizer = self._configure_zero_optimizer(basic_optimizer)
+[rank3]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/engine.py", line 1626, in _configure_zero_optimizer
+[rank3]:     optimizer = DeepSpeedZeroOptimizer_Stage3(
+[rank3]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 351, in __init__
+[rank3]:     self._create_fp16_partitions_with_defragmentation(self.trainable_param_groups)
+[rank3]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 738, in _create_fp16_partitions_with_defragmentation
+[rank3]:     self._create_param_groups_fp16_flat_cpu_memory()
+[rank3]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/runtime/zero/stage3.py", line 688, in _create_param_groups_fp16_flat_cpu_memory
+[rank3]:     self.param_groups_fp16_flat_cpu_memory.append(get_accelerator().pin_memory(
+[rank3]:   File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/deepspeed/accelerator/cuda_accelerator.py", line 293, in pin_memory
+[rank3]:     return tensor.pin_memory()
+[rank3]: RuntimeError: CUDA error: invalid argument
+[rank3]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank3]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+[rank3]: Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+W0423 11:35:26.997000 229565 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 229567 closing signal SIGTERM
+W0423 11:35:27.004000 229565 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 229568 closing signal SIGTERM
+W0423 11:35:27.005000 229565 site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 229569 closing signal SIGTERM
+E0423 11:35:30.058000 229565 site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 3 (pid: 229570) of binary: /scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/bin/python
+Traceback (most recent call last):
+  File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/torch/distributed/run.py", line 919, in main
+    run(args)
+  File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/torch/distributed/run.py", line 910, in run
+    elastic_launch(
+  File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch/kf09/zw4360/miniconda3/envs/Visual-RFT/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+src/virft/src/open_r1/grpo.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-04-23_11:35:26
+  host      : gadi-gpu-v100-0054.gadi.nci.org.au
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 229570)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html

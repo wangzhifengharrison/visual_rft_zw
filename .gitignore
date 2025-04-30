@@ -1,9 +1,6 @@
 classification
 coco_evaluation
 flash-attention
-lisa_evaluation
-logs
-lisa_evaluation
 share_data
 share_models
 wandb

@@ -33,3 +33,6 @@ for inode in $(seq 1 $PBS_NCI_NCPUS_PER_NODE $PBS_NCPUS); do
   pbsdsh -n $inode ${LAUNCH_SCRIPT} ${NNODES} ${PROC_PER_NODE} ${MASTER_ADDR} &
 done
 wait
+
+#https://opus.nci.org.au/spaces/Help/pages/184647980/PyTorch
+# qsub zf_run_2_29_04_2025.sh to run the experiment

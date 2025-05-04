@@ -399,4 +399,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+## must run with torchrun in interactive mode
 # torchrun  --nnodes=1  --nproc_per_node=2 --rdzv_id=100 --rdzv_backend=c10d  Qwen2_VL_coco_infere_zw.py 

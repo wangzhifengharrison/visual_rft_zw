@@ -11,7 +11,7 @@
 # Must include `#PBS -l storage=scratch/ab12+gdata/yz98` if the job
 # needs access to `/scratch/ab12/` and `/g/data/yz98/`. Details on:
 # https://opus.nci.org.au/display/Help/PBS+Directives+Explained
-
+# https://opus.nci.org.au/spaces/Help/pages/184647980/PyTorch
 # Set variables
 if [[ $PBS_NCPUS -ge $PBS_NCI_NCPUS_PER_NODE ]]
 then

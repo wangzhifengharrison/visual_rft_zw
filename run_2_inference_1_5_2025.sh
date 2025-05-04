@@ -11,7 +11,7 @@ conda activate Visual-RFT
 
 
 # Application script
-APPLICATION_SCRIPT=/scratch/kf09/zw4360/Visual-RFT/coco_evaluation/Qwen2_VL_coco_infere.py
+APPLICATION_SCRIPT=/scratch/kf09/zw4360/Visual-RFT/coco_evaluation/Qwen2_VL_coco_infere_zw.py
 
 # Set execute permission
 chmod u+x ${APPLICATION_SCRIPT}

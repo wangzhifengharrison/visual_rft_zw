@@ -3,8 +3,8 @@
 #PBS -q gpuvolta
 #PBS -l ngpus=4
 #PBS -l ncpus=48
-#PBS -l mem=128GB
-#PBS -l jobfs=400GB
+#PBS -l mem=128GB  
+#PBS -l jobfs=400GB   
 #PBS -l walltime=00:20:00
 #PBS -l wd
 #PBS -j oe
@@ -13,6 +13,7 @@
 # Set variables
 if [[ $PBS_NCPUS -ge $PBS_NCI_NCPUS_PER_NODE ]]
 then
+  echo "PBS_NCI_NCPUS_PER_NODE: $PBS_NCPUS"
   NNODES=$((PBS_NCPUS / PBS_NCI_NCPUS_PER_NODE))
 else
   NNODES=1
@@ -33,3 +34,7 @@ for inode in $(seq 1 $PBS_NCI_NCPUS_PER_NODE $PBS_NCPUS); do
   pbsdsh -n $inode ${LAUNCH_SCRIPT} ${NNODES} ${PROC_PER_NODE} ${MASTER_ADDR} &
 done
 wait
+
+
+
+

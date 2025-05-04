@@ -254,7 +254,7 @@ def run(rank, world_size):
             #     continue
           
             ### open vocabulary experiment:  15 new classes
-            selected_cate = ['mouse', 'fork', 'hot dog', 'cat', 'airplane', 'suitcase', 'parking meter', 'sandwich', 'train', 'hair drier', 'toilet', 'toaster', 'snowboard', 'frisbee', 'bear', 'handbag', 'orange', 'phone', 'person', 'bus', 'kite', 'backpack']
+            selected_cate = ['mouse', 'fork', 'hot dog', 'cat', 'airplane', 'suitcase', 'parking meter', 'sandwich', 'train', 'hair drier', 'toilet', 'toaster', 'snowboard', 'frisbee', 'bear']
             if category not in selected_cate:
                 continue
 
@@ -285,7 +285,6 @@ def run(rank, world_size):
                 }
             ]
             log_2.append(f"come to 286 {image_id} and {category_id}")
-
             
             try:
                 # Preparation for inference
@@ -400,4 +399,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-# torchrun  --nnodes=1  --nproc_per_node=3 --rdzv_id=100 --rdzv_backend=c10d  Qwen2_VL_coco_infere_zw.py 
+# torchrun  --nnodes=1  --nproc_per_node=2 --rdzv_id=100 --rdzv_backend=c10d  Qwen2_VL_coco_infere_zw.py 

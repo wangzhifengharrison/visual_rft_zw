@@ -372,6 +372,7 @@ SYSTEM_PROMPT = (
     "<think> reasoning process here </think><answer> answer here </answer>"
 )
 
+
 def main(script_args, training_args, model_args):
     # Get reward functions
     script_args.reward_funcs = ['accuracy_iou','accuracy_confidence','format']

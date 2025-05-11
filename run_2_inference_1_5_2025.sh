@@ -35,7 +35,7 @@ WANDB_MODE=offline torchrun \
     --attn_implementation sdpa \
     --max_pixels 401408 \
     --num_train_epochs 1 \
-    --run_name Qwen2-VL-2B_GRPO_coco_base65cate_6k_inference \
+    --run_name Qwen2-VL-2B_GRPO_dfew_dataset_inference \
     --save_steps 50 \
     --save_only_model true \
     --num_generations 4

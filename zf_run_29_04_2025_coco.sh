@@ -23,7 +23,7 @@ PROC_PER_NODE=$((PBS_NGPUS / NNODES))
 MASTER_ADDR=$(cat $PBS_NODEFILE | head -n 1)
 
 # Launch script
-LAUNCH_SCRIPT=/scratch/kf09/zw4360/Visual-RFT/zf_run_2_29_04_2025.sh
+LAUNCH_SCRIPT=/scratch/kf09/zw4360/Visual-RFT/zf_run_2_29_04_2025_coco.sh
 
 # Set execute permission
 chmod u+x ${LAUNCH_SCRIPT}

@@ -5,7 +5,7 @@
 #PBS -l ncpus=192
 #PBS -l mem=512GB  
 #PBS -l jobfs=800GB   
-#PBS -l walltime=05:00:00
+#PBS -l walltime=10:00:00
 #PBS -l wd
 #PBS -j oe
 #PBS -o logs/run_log_$PBS_JOBID.log
@@ -23,7 +23,7 @@ PROC_PER_NODE=$((PBS_NGPUS / NNODES))
 MASTER_ADDR=$(cat $PBS_NODEFILE | head -n 1)
 
 # Launch script
-LAUNCH_SCRIPT=/scratch/kf09/zw4360/Visual-RFT/zf_run_2_29_04_2025.sh
+LAUNCH_SCRIPT=/scratch/kf09/zw4360/Visual-RFT/zf_run_2_29_04_2025_coco_v2.sh
 
 # Set execute permission
 chmod u+x ${LAUNCH_SCRIPT}

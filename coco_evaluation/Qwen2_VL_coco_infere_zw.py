@@ -177,7 +177,7 @@ def remove_duplicates(bbox_list):
 # model_path = "./share_models/Qwen2-VL-2B-Instruct"
 # ori_processor_path = "./share_models/Qwen2-VL-2B-Instruct"
 
-model_path = "/scratch/kf09/zw4360/Visual-RFT/share_models/Qwen2-VL-2B-Instruct_GRPO_coco_base65cate_6k"
+model_path = "/scratch/kf09/zw4360/Visual-RFT/share_models/Qwen2-VL-2B-Instruct_GRPO_coco_base65_dataset_change_back_grpo_train"
 ori_processor_path = "/scratch/kf09/zw4360/Visual-RFT/share_models/Qwen2-VL-2B-Instruct"
 
 def run(rank, world_size):
@@ -254,7 +254,9 @@ def run(rank, world_size):
             #     continue
           
             ### open vocabulary experiment:  15 new classes
-            selected_cate = ['mouse', 'fork', 'hot dog', 'cat', 'airplane', 'suitcase', 'parking meter', 'sandwich', 'train', 'hair drier', 'toilet', 'toaster', 'snowboard', 'frisbee', 'bear']
+            # selected_cate = ['mouse', 'fork', 'hot dog', 'cat', 'airplane', 'suitcase', 'parking meter', 'sandwich', 'train', 'hair drier', 'toilet', 'toaster', 'snowboard', 'frisbee', 'bear']
+            selected_cate = ['mouse', 'cat', 'suitcase']
+
             if category not in selected_cate:
                 continue
 
@@ -303,13 +305,14 @@ def run(rank, world_size):
                 log_2.append(f"come to line 301 {image_id}")
 
                 # Inference: Generation of the output
-                generated_ids = model.generate(**inputs, max_new_tokens=1024)
+                generated_ids = model.generate(**inputs, max_new_tokens=1024, use_cache=True)
                 generated_ids_trimmed = [
                     out_ids[len(in_ids) :] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
                 ]
                 response = processor.batch_decode(
                     generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
                 )
+                print(315, response[0])
                 response = response[0]
                 full_response = response
                 logger.info(response, 293)
@@ -351,9 +354,10 @@ def run(rank, world_size):
                             pred_results.append(new_pred_dict)
                             bbox_count += 1
                             logger.info('bbox_count: '+str(bbox_count))
-                            # print(323, new_pred_dict)
+                            logger.info('full response: '+str(full_response))
+                            print(323, new_pred_dict)
                             # Save to JSON Lines file
-                            with open('/scratch/kf09/zw4360/Visual-RFT/predictions/Qwen2-VL-2B-Instruct_GRPO_coco_base65cate_6k/each_predictions.jsonl', 'a') as f:
+                            with open('/scratch/kf09/zw4360/Visual-RFT/predictions/Qwen2-VL-2B-Instruct_GRPO_coco_base65_dataset_change_back_grpo_train/each_predictions.jsonl', 'a') as f:
                                 json.dump(new_pred_dict, f)
                                 f.write('\n')
                         log_2.append(f"come to line 357 {image_id}")
@@ -390,7 +394,7 @@ def main():
 
         logger.info('Error number: ' + str(global_count_error))  
         ### save path
-        with open('/scratch/kf09/zw4360/Visual-RFT/predictions/Qwen2-VL-2B-Instruct_GRPO_coco_base65cate_6k/prediction_results.json', 'w') as json_file:
+        with open('/scratch/kf09/zw4360/Visual-RFT/predictions/Qwen2-VL-2B-Instruct_GRPO_coco_base65_dataset_change_back_grpo_train/prediction_results.json', 'w') as json_file:
             json.dump(global_results, json_file)
         logger.info("Done")
         logger.info('finished running')

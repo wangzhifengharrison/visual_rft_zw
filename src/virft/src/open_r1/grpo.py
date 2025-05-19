@@ -130,7 +130,7 @@ def sort_and_calculate_iou(list1, list2, iou_threshold=0.5):
         else:
             iou_results.append((0, bbox2['Confidence']))
     
-    ### [(0.7192676547515258, 1.0), (0, 0.7)]
+    ### [(0.7192676547515258, 1.0), (0, 0.7)] best_iou,bbox2['Confidence']
     return iou_results
 
 def remove_duplicates(bbox_list):
@@ -314,6 +314,7 @@ def accuracy_reward_confidence(completions, solution, **kwargs):
                 student_answer = student_answer.replace("[[",'[')
                 student_answer = student_answer.replace("]]",']')
                 student_answer = student_answer.replace("\n",'')
+                
                 # [{'Position': [254, 303, 291, 365], 'Confidence': 0.9}, {'Position': [100, 100, 200, 200], 'Confidence': 0.8}]
                 ground_truth_bbox = extract_bbox(ground_truth)
                 student_answer_bbox = extract_bbox(student_answer)

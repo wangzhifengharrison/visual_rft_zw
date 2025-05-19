@@ -5,7 +5,7 @@
 #PBS -l ncpus=192
 #PBS -l mem=512GB  
 #PBS -l jobfs=800GB   
-#PBS -l walltime=05:00:00
+#PBS -l walltime=01:00:00
 #PBS -l wd
 #PBS -j oe
 #PBS -o logs/run_log_$PBS_JOBID.log
@@ -35,4 +35,4 @@ done
 wait
 
 #https://opus.nci.org.au/spaces/Help/pages/184647980/PyTorch
-# qsub zf_run_29_04_2025.sh to run the experiment
+# qsub zf_run_29_04_2025_coco.sh to run the experiment

@@ -1,11 +1,11 @@
 #!/bin/bash
 #PBS -P kf09
 #PBS -q gpuvolta
-#PBS -l ngpus=16
-#PBS -l ncpus=192
-#PBS -l mem=512GB  
-#PBS -l jobfs=800GB   
-#PBS -l walltime=20:00:00
+#PBS -l ngpus=4
+#PBS -l ncpus=48
+#PBS -l mem=128GB  
+#PBS -l jobfs=200GB   
+#PBS -l walltime=00:30:00
 #PBS -l wd
 #PBS -j oe
 #PBS -o logs/run_log_$PBS_JOBID.log

@@ -165,7 +165,7 @@ def remove_duplicates(bbox_list):
 # model_path = "./share_models/Qwen2-VL-2B-Instruct"
 # ori_processor_path = "./share_models/Qwen2-VL-2B-Instruct"
 
-model_path = "/scratch/kf09/zw4360/Visual-RFT/share_models/Qwen2-VL-2B-Instruct_GRPO_coco_base65cate_6k"
+model_path = "/scratch/kf09/zw4360/Visual-RFT/share_models/Qwen2-VL-2B-Instruct_GRPO_coco_base65_dataset"
 ori_processor_path = "/scratch/kf09/zw4360/Visual-RFT/share_models/Qwen2-VL-2B-Instruct"
 
 def run(rank, world_size):
@@ -290,6 +290,7 @@ def run(rank, world_size):
                 generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
             )
             response = response[0]
+            print(293, response)
             full_response = response
             logger.info(response, 293)
             # Fix possible formatting errors in the response.
@@ -327,7 +328,7 @@ def run(rank, world_size):
                         logger.info('bbox_count: '+str(bbox_count))
                         # print(323, new_pred_dict)
                         # Save to JSON Lines file
-                        with open('/scratch/kf09/zw4360/Visual-RFT/predictions/Qwen2-VL-2B-Instruct_GRPO_coco_base65cate_6k/each_predictions.jsonl', 'a') as f:
+                        with open('/scratch/kf09/zw4360/Visual-RFT/predictions/Qwen2-VL-2B-Instruct_GRPO_coco_base65cate_6k/each_predictions_test.jsonl', 'a') as f:
                             json.dump(new_pred_dict, f)
                             f.write('\n')
             except Exception as e:
@@ -358,7 +359,7 @@ def main():
 
         logger.info('Error number: ' + str(global_count_error))  
         ### save path
-        with open('/scratch/kf09/zw4360/Visual-RFT/predictions/Qwen2-VL-2B-Instruct_GRPO_coco_base65cate_6k/prediction_results.json', 'w') as json_file:
+        with open('/scratch/kf09/zw4360/Visual-RFT/predictions/Qwen2-VL-2B-Instruct_GRPO_coco_base65cate_6k/prediction_results_test.json', 'w') as json_file:
             json.dump(global_results, json_file)
         logger.info("Done")
         logger.info('finished running')
@@ -367,4 +368,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-# python -m torch.distributed.launch --nproc_per_node=8 --master_port 1234 Qwen2_VL_coco_infere.py
+# python -m torch.distributed.launch --nproc_per_node=2 --master_port 1234 Qwen2_VL_coco_infere.py

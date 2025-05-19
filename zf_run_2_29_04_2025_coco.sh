@@ -15,10 +15,12 @@ APPLICATION_SCRIPT=/scratch/kf09/zw4360/Visual-RFT/src/virft/src/open_r1/grpo.py
 export DATA_PATH=./share_data/ViRFT_COCO_base65   #dfew_dataset   ### your local dataset downloading from huggingface
 export CKPT_PATH=./share_models/Qwen2-VL-2B-Instruct    ### Qwen2-VL-2B checkpoint path
 export SAVE_PATH=./share_models/Qwen2-VL-2B-Instruct_GRPO_coco_base65_dataset_change_back_grpo_train    ### save path
+export DEBUG_MODE="true" # Enable Debug if you want to see the rollout of model during RL
+export LOG_PATH="./debug_log_2b_GRPO_coco_base65cate_6k_use_cache_false.txt"
 # Set execute permission
 chmod u+x ${APPLICATION_SCRIPT}
 # Logging
-exec > "logs/log_${1}_${2}.out" 2>&1
+exec > "logs/log_${1}_${2}_coco_original_usecache_false.out" 2>&1
 # Run PyTorch application
 WANDB_MODE=offline torchrun \
     --nnodes=${1} \
@@ -39,8 +41,8 @@ WANDB_MODE=offline torchrun \
     --gradient_checkpointing true \
     --attn_implementation sdpa \
     --max_pixels 401408 \
-    --num_train_epochs 1 \
+    --num_train_epochs 0.2 \
     --run_name Qwen2-VL-2B_GRPO_coco_base_65_dataset_change_back_grpo_set \
-    --save_steps 50 \
+    --save_steps 10 \
     --save_only_model true \
     --num_generations 4

@@ -11,16 +11,17 @@ conda activate Visual-RFT
 
 
 # Application script
-APPLICATION_SCRIPT=/scratch/kf09/zw4360/Visual-RFT/src/virft/src/open_r1/grpo_qwen_2_5_dfew.py    #grpo.py 
+APPLICATION_SCRIPT=/scratch/kf09/zw4360/Visual-RFT/src/virft/src/open_r1/grpo_qwen_2_5_dfew_reward_clip.py #grpo_qwen_2_5_dfew.py    #grpo.py 
 export DATA_PATH=./share_data/valid_partial_dfew_dataset_qwen_2_5 #ViRFT_COCO_base65  #dfew_dataset_qwen_2_5   #dfew_dataset   ### your local dataset downloading from huggingface
 export CKPT_PATH=./share_models/Qwen2.5-VL-3B-Instruct    ### Qwen2-VL-2B checkpoint path
 export SAVE_PATH=./share_models/Qwen2.5-VL-3B-Instruct_GRPO_dfew_train    ### save path
 export DEBUG_MODE="true" # Enable Debug if you want to see the rollout of model during RL
-export LOG_PATH="./debug_log_qwen2.5_3b_GRPO_dfew_use_cache_false_dfew.txt"
+export LOG_PATH="./debug_log_qwen2.5_3b_GRPO_dfew_use_cache_false_dfew_clip_offload.txt"
 # Set execute permission
 chmod u+x ${APPLICATION_SCRIPT}
 # Logging
-exec > "logs/log_${1}_${2}_qwen2.5_3b_dfew_usecache_false_dfew.out" 2>&1
+exec > "logs/log_${1}_${2}_qwen2.5_3b_dfew_usecache_false_dfew_clip_offload.out" 2>&1
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True #环境变量设置来减少 CUDA 显存碎片化
 # Run PyTorch application
 WANDB_MODE=offline torchrun \
     --nnodes=${1} \
@@ -32,10 +33,10 @@ WANDB_MODE=offline torchrun \
     --output_dir ${SAVE_PATH} \
     --model_name_or_path ${CKPT_PATH} \
     --dataset_name ${DATA_PATH} \
-    --deepspeed src/virft/local_scripts/zero3_qwen_2_5.json \
+    --deepspeed src/virft/local_scripts/zero3_offload_qwen_2_5.json \
     --max_prompt_length 1024 \
     --per_device_train_batch_size 1 \
-    --gradient_accumulation_steps 2 \
+    --gradient_accumulation_steps 1 \
     --logging_steps 1 \
     --fp16 \
     --gradient_checkpointing true \

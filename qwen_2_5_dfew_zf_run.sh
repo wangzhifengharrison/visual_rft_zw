@@ -5,10 +5,10 @@
 #PBS -l ncpus=192
 #PBS -l mem=512GB  
 #PBS -l jobfs=800GB   
-#PBS -l walltime=01:30:00
+#PBS -l walltime=10:00:00
 #PBS -l wd
 #PBS -j oe
-#PBS -o logs/run_log_$PBS_JOBID_1_2000.log
+#PBS -o logs/run_log_$PBS_JOBID_full.log
 
 # Set variables
 if [[ $PBS_NCPUS -ge $PBS_NCI_NCPUS_PER_NODE ]]

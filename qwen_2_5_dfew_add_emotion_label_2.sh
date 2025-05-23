@@ -10,7 +10,7 @@ source /scratch/kf09/zw4360/miniconda3/etc/profile.d/conda.sh
 conda activate Visual-RFT
 
 
-# Application script
+# Application script grpo_qwen_2_5_dfew_reward_add_emotion_label.py without reward for emotion label
 APPLICATION_SCRIPT=/scratch/kf09/zw4360/Visual-RFT/src/virft/src/open_r1/grpo_qwen_2_5_dfew_reward_add_emotion_label.py #grpo_qwen_2_5_dfew.py  #grpo.py 
 export DATA_PATH=./share_data/valid_dfew_dataset_qwen_2_5_add_emotion_label_2000 #valid_dfew_dataset_qwen_2_5_add_emotion_label #valid_dfew_dataset_qwen_2_5 #valid_partial_dfew_dataset_qwen_2_5 #ViRFT_COCO_base65  #dfew_dataset_qwen_2_5   #dfew_dataset   ### your local dataset downloading from huggingface
 export CKPT_PATH=./share_models/Qwen2.5-VL-3B-Instruct    ### Qwen2-VL-2B checkpoint path

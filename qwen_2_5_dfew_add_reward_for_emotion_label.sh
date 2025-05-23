@@ -23,7 +23,7 @@ PROC_PER_NODE=$((PBS_NGPUS / NNODES))
 MASTER_ADDR=$(cat $PBS_NODEFILE | head -n 1)
 
 # Launch script
-LAUNCH_SCRIPT=/scratch/kf09/zw4360/Visual-RFT/qwen_2_5_dfew_add_emotion_label_2.sh
+LAUNCH_SCRIPT=/scratch/kf09/zw4360/Visual-RFT/qwen_2_5_dfew_add_reward_for_emotion_label_2.sh
 
 # Set execute permission
 chmod u+x ${LAUNCH_SCRIPT}
@@ -35,4 +35,4 @@ done
 wait
 
 #https://opus.nci.org.au/spaces/Help/pages/184647980/PyTorch
-# qsub qwen_2_5_dfew_add_emotion_label.sh to run the experiment
+# qsub qwen_2_5_dfew_add_reward_for_emotion_label.sh to run the experiment

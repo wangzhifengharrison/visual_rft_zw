@@ -264,7 +264,9 @@ class Qwen2VLGRPOTrainer(Trainer):
         for i, reward_func in enumerate(reward_funcs):
             if isinstance(reward_func, str):
                 reward_funcs[i] = AutoModelForSequenceClassification.from_pretrained(
-                    reward_func, num_labels=1, **model_init_kwargs
+                    reward_func, ## 模型名称或本地路径
+                    num_labels=1, # 只输出 1 个分值（回报）
+                    **model_init_kwargs # 其他自定义初始化参数
                 )
         self.reward_funcs = reward_funcs
 

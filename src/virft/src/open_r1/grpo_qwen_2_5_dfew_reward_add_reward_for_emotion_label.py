@@ -110,6 +110,7 @@ def sort_and_calculate_iou(list1, list2, iou_threshold=0.5):
     list2_sorted = sorted(list2, key=lambda x: x['Confidence'], reverse=True)
     
     iou_results = []
+    label_results = []
     
     matched_list1_indices = set()
 
@@ -127,12 +128,16 @@ def sort_and_calculate_iou(list1, list2, iou_threshold=0.5):
         if best_iou > iou_threshold:
             iou_results.append((best_iou, bbox2['Confidence']))
             matched_list1_indices.add(matched_bbox1)
+            # 检查标签是否一致
+            label_match = bbox2['Label'] == list1[matched_bbox1]['Label']
+            label_results.append((label_match, bbox2['Confidence']))
         else:
             iou_results.append((0, bbox2['Confidence']))
+            label_results.append((False, bbox2['Confidence']))
     
     ### [(0.7192676547515258, 1.0), (0, 0.7)] best_iou,bbox2['Confidence']
     # print("134, iou_results: ", iou_results)
-    return iou_results
+    return iou_results, label_results
 
 def remove_duplicates(bbox_list):
     seen = set()
@@ -192,6 +197,24 @@ def compute_reward_iou_v2(iou_results, len_gt):
         iou_reward = iou_reward/len(iou_results)
     return iou_reward
 
+def compute_reward_label(label_results, len_gt):
+    label_reward = 0.0
+    confidence_reward = 0.0
+    for i in range(len(label_results)):
+        temp_label = label_results[i][0]
+        temp_confidence = label_results[i][1]
+
+        temp_iou_reward = 0.95 if temp_label else 0.05
+        label_reward += temp_iou_reward
+    
+    if len_gt>=len(label_results):
+        label_reward = label_reward/len_gt
+    else:
+        label_reward = label_reward/len(label_results)
+    return label_reward
+
+
+
 def compute_reward_confidence(iou_results):
     iou_reward = 0.0
     confidence_reward = 0.0
@@ -217,6 +240,16 @@ def accuracy_reward_iou(completions, solution, **kwargs):
     contents = [completion[0]["content"] for completion in completions]
     rewards = []
     current_time = datetime.now().strftime("%d-%H-%M-%S-%f")
+
+    if os.getenv("DEBUG_MODE") == "true":
+            log_path = os.getenv("LOG_PATH")
+            # local_rank = int(os.getenv("LOCAL_RANK", 0))
+            with open(log_path, "a") as f:
+                f.write(f"***********\n")
+                f.write(f"solution: {solution}\n")
+                f.write(f"***********\n")
+
+
     for content, sol in zip(contents, solution):
         # reward = 0.0
         # baseline to avoid zero reward
@@ -262,7 +295,7 @@ def accuracy_reward_iou(completions, solution, **kwargs):
                     reward = 0.05
                 else:
                     student_answer_bbox = remove_duplicates(student_answer_bbox)   # remove duplicates
-                    iou_results = sort_and_calculate_iou(ground_truth_bbox, student_answer_bbox)
+                    iou_results, label_results = sort_and_calculate_iou(ground_truth_bbox, student_answer_bbox)
                     ### new iou reward
                     reward = compute_reward_iou_v2(iou_results, len(ground_truth_bbox))
                     # clip to [baseline, 0.95]
@@ -335,7 +368,7 @@ def accuracy_reward_confidence(completions, solution, **kwargs):
                     reward = 0.05
                 else:
                     student_answer_bbox = remove_duplicates(student_answer_bbox)   # remove duplicates
-                    iou_results = sort_and_calculate_iou(ground_truth_bbox, student_answer_bbox)
+                    iou_results, label_results = sort_and_calculate_iou(ground_truth_bbox, student_answer_bbox)
                     reward = compute_reward_confidence(iou_results)
                     reward = max(0.05, min(reward, 0.95))
                     # if reward>1:
@@ -374,11 +407,92 @@ def format_reward(completions, **kwargs):
     matches = [re.fullmatch(pattern, content, re.DOTALL) for content in completion_contents]
     return [0.95 if match else 0.05 for match in matches]
 
+
+def accuracy_reward_label(completions, solution, **kwargs):
+    """Reward function that checks if the completion is correct using either symbolic verification or exact string matching."""
+    contents = [completion[0]["content"] for completion in completions]
+    rewards = []
+    current_time = datetime.now().strftime("%d-%H-%M-%S-%f")
+    for content, sol in zip(contents, solution):
+        # reward = 0.0
+        # baseline to avoid zero reward
+        # <answer>[{'Position': [190, 12, 455, 360], 'Confidence': 0.89, 'Label': 'sad'}]</answer>
+        # sol: <answer>[{'Position': [295, 74, 393, 224], 'Confidence': 1, 'Label': neutral}]</answer>
+        # student_answer_bbox: [{'Position': [190, 12, 455, 360], 'Confidence': 0.89, 'Label': 'sad'}]
+        reward = 0.05
+        # Try symbolic verification first
+        try:
+            answer = parse(content)
+            if float(verify(answer, parse(sol))) > 0:
+                reward = 0.95 #1.0
+        except Exception:
+            pass  # Continue to next verification method if this fails
+
+        student_answer_bbox = []
+        ground_truth_bbox = []
+        iou_results = []
+        label_results = []
+        show_flage = 0
+
+        # If symbolic verification failed, try string matching
+        if reward == 0.05:
+            try:
+                show_flage = 1
+                # Extract answer from solution if it has think/answer tags
+                ground_truth = sol.strip()
+                # Extract answer from content if it has think/answer tags
+                content_match = re.search(r'<answer>(.*?)</answer>', content) 
+                # content: <think> The image shows a man dressed in a suit, standing in what appears to be a formal or somber setting. Given the context and his posture, it seems likely he is feeling sad or contemplative. The man has a furrowed brow and downcast eyes, which are common signs of sadness. </think>
+                # <answer>[{'Position': [190, 12, 455, 360], 'Confidence': 0.89, 'Label': 'sad'}]</answer>
+                student_answer = content_match.group(1).strip() if content_match else content.strip()
+                student_answer = '<answer>'+student_answer+'</answer>'
+
+                # fix format error
+                student_answer = student_answer.replace("[[",'[')  
+                student_answer = student_answer.replace("]]",']')  
+                student_answer = student_answer.replace("\n",'')  
+                # [{'Position': [254, 303, 291, 365], 'Confidence': 0.9, 'Label': 'sad'}, {'Position': [100, 100, 200, 200], 'Confidence': 0.8, 'Label': 'happy'}]
+                ground_truth_bbox = extract_bbox(ground_truth)
+                student_answer_bbox = extract_bbox(student_answer)
+                # pdb.set_trace()
+                if student_answer_bbox==None or type(student_answer_bbox[0])!=dict:
+                    reward = 0.05
+                else:
+                    student_answer_bbox = remove_duplicates(student_answer_bbox)   # remove duplicates
+                    iou_results, label_results = sort_and_calculate_iou(ground_truth_bbox, student_answer_bbox)
+                    ### new iou reward
+                    reward = compute_reward_label(label_results, len(ground_truth_bbox))
+                    # clip to [baseline, 0.95]
+                    reward = max(0.05, min(reward, 0.95))
+                    # if reward>1:
+                    #     reward = 1.0
+            except Exception:
+                pass  # Keep reward as 0.0 if both methods fail
+        reward += 1e-4  # change the reward value 
+        rewards.append(reward)
+        # import pdb; pdb.set_trace()
+        if os.getenv("DEBUG_MODE") == "true":
+            log_path = os.getenv("LOG_PATH")
+            # local_rank = int(os.getenv("LOCAL_RANK", 0))
+            with open(log_path, "a") as f:
+                f.write(f"------------- {current_time} Accuracy reward of IoU: {reward} -------------\n")
+                f.write(f"content: {content}\n")
+                f.write(f"sol: {sol}\n")
+                f.write(f"completions: {completions}\n")
+                if show_flage==1:
+                    f.write(f"student_answer_bbox: {student_answer_bbox}\n")
+                    f.write(f"ground_truth_bbox: {ground_truth_bbox}\n")
+                    if student_answer_bbox!=None:
+                        f.write(f"label_results: {label_results}\n")
+        show_flage = 0 
+    return rewards
+
 ###  reward registry three parts
 reward_funcs_registry = {
     "accuracy_iou": accuracy_reward_iou,
     "accuracy_confidence": accuracy_reward_confidence,
     "format": format_reward,
+    "accuracy_label": accuracy_reward_label,
 }
 
 SYSTEM_PROMPT = (
@@ -391,7 +505,7 @@ SYSTEM_PROMPT = (
 
 def main(script_args, training_args, model_args):
     # Get reward functions
-    script_args.reward_funcs = ['accuracy_iou','accuracy_confidence','format']
+    script_args.reward_funcs = ['accuracy_iou','accuracy_confidence','format','accuracy_label']
     reward_funcs = [reward_funcs_registry[func] for func in script_args.reward_funcs]
 
     # Load the dataset from huggingface

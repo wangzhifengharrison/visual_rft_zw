@@ -1,0 +1,16 @@
+1. sinteractive -n 1 -t 00:30:00 -m 64gb -p h2gpu -g gpu:1 -A OD-220461
+
+2. squeue -u zhe030
+
+sinteractive -n 1 -t 2:00:00 -m 64gb -p h2gpu -g gpu:1 -A OD-220461
+
+https://docs.hpc.sjtu.edu.cn/job/slurm.html
+
+squeue -u zhe030
+
+sinfo -o "%P %N %G"
+#######################
+pip install trl==0.16.0
+transformer==4.49.0.dev0
+pip install --upgrade wandb==0.19.11
+torch.inference_mode = torch.no_grad

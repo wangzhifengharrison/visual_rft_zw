@@ -208,14 +208,8 @@ def run():
     model = model.to(f"cuda:{local_rank}")
     model = model.eval()
 
-     # Synchronize before data loading
+    # Synchronize before data loading
     # torch.distributed.barrier()
-
-    # with open('/scratch/kf09/zw4360/Visual-RFT/share_data/Inference_data/coco/annotations/instances_val2017.json', 'r') as json_file:
-    #     instances_val2017 = json.load(json_file)
-
-    # category_ids_2_categoty = {item['id']:item['name'] for item in instances_val2017['categories']}
-    # category_2_categoty_ids = {item['name']:item['id'] for item in instances_val2017['categories']}
     # 3) Read Excel and prep image paths
     df = pd.read_excel(excel_path)
     image_paths_temp = []
@@ -227,42 +221,22 @@ def run():
         image_paths_temp.append(full_path)
 
     df["image_path"] = image_paths_temp
-
-    # df["image_path"] = df.apply(
-    #     lambda r: os.path.join(
-    #         images_path,
-    #         str(r["video_name"]),
-    #         f".jpg",
-    #     ),
-    #     axis=1,
-    # )
+    # add a column for the responses
+    df["full_response"] = None
     # Convert to list of dicts and shard across ranks
     records = df.to_dict(orient="records")
     split_records = records[rank::world_size]
+    indices = list(range(rank, len(df), world_size))
+    # make a copy for just this rank
+    df_rank = df.loc[indices].copy()
     logger.info(f"Rank {rank} will process {len(split_records)} frames")
 
     # # Create output file per rank
     output_path = f'/home/zhe030/zhe030/ZFW/Visual-RFT/logs/each_predictions_rank_{rank}.jsonl'
-    # ### split val
-    # rank = rank
-    # world_size = world_size
-    # import math
-    # instances_val2017['images'] = instances_val2017['images']
-    # split_length = math.ceil(len(instances_val2017['images'])/world_size)
-    # # split_images = instances_val2017['images'][int(rank*split_length) : int((rank+1)*split_length)]
-
-    # split_images = instances_val2017['images'][rank::world_size]  # Strided slicing
-    # logger.info(f"Rank {rank} processing {len(split_images)} images")
-
 
     ### Traverse all images in val.
     error_count = 0
-    # bbox_count = 0
     pred_results = []
-    # if '2B' in model_path:
-    #     exist_cat = json.load(open("/scratch/kf09/zw4360/Visual-RFT/coco_evaluation/exist_map_coco_Qwen2_vl_2B_baseline.json", 'r'))
-    # elif '7B' in model_path:
-    #     exist_cat = json.load(open("/scratch/kf09/zw4360/Visual-RFT/coco_evaluation/exist_map_coco_Qwen2_vl_7B_baseline.json", 'r'))
     for rec in tqdm(split_records, desc=f"Rank {rank}"):
         log_2 = []
         image_path = rec["image_path"]
@@ -302,7 +276,7 @@ def run():
                 return_tensors="pt",
             )
             inputs = inputs.to(model.device)
-            log_2.append(f"come to line 301 {image_path}")
+            log_2.append(f"{image_path}")
 
             # 4b) Inference: Generation of the output
             generated_ids = model.generate(**inputs, max_new_tokens=1024, use_cache=True)
@@ -312,10 +286,13 @@ def run():
             response = processor.batch_decode(
                 generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
             )
-            print(315, response[0])
             response = response[0]
             full_response = response
-            df[image_path] = full_response #### add full response to df
+            # write it back into df
+            # write back into the rank‐specific DataFrame
+            df_rank.loc[df_rank["image_path"] == image_path, "full_response"] = full_response
+            # df.loc[df["image_path"] == image_path, "full_response"] = full_response
+            # df[image_path] = full_response #### add full response to df
             logger.info(response)
             # Fix possible formatting errors in the response.
             response = response.replace("[[",'[')
@@ -329,7 +306,7 @@ def run():
             response = content_match.group(1).strip() if content_match else response.strip()
             response = '<answer>'+response+'</answer>'
             log_2.append(f"come to line 325 {full_response}")
-            log_2.append(f"come to line 331 {response}")
+            # log_2.append(f"come to line 331 {response}")
 
             # extract bbox
             try:
@@ -374,7 +351,10 @@ def run():
         with open(output_path, 'a') as f:
             json.dump([log_2], f)
             f.write('\n')
-    df.to_csv('/home/zhe030/zhe030/ZFW/Visual-RFT/predictions/dfew_inference_results.csv', index=False)
+    # df.to_csv('/home/zhe030/zhe030/ZFW/Visual-RFT/predictions/dfew_inference_results.csv', index=False)
+    #  at the end, save out just this rank’s CSV
+    out_csv = f"/home/zhe030/zhe030/ZFW/Visual-RFT/predictions/dfew_csv/dfew_inference_results_rank_{rank}.csv"
+    df_rank.to_csv(out_csv, index=False)
     return [error_count, pred_results]
     
 

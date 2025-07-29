@@ -14,3 +14,8 @@ pip install trl==0.16.0
 transformer==4.49.0.dev0
 pip install --upgrade wandb==0.19.11
 torch.inference_mode = torch.no_grad
+####### 1. Load your key
+eval "$(ssh-agent -s)"
+ssh-add /home/zhe030/zhe030/ZFW/id_ed25519_zfw
+# 2. Test SSH
+ssh -T git@github.com   # should say "Hi <you>! You've successfully authenticated..."

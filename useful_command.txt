@@ -19,3 +19,6 @@ eval "$(ssh-agent -s)"
 ssh-add /home/zhe030/zhe030/ZFW/id_ed25519_zfw
 # 2. Test SSH
 ssh -T git@github.com   # should say "Hi <you>! You've successfully authenticated..."
+
+###### create env for SFT
+1. conda create -n Visual_RFT_sft python=3.10 -Visual_RFT_sft 

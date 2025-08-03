@@ -31,7 +31,7 @@ import logging
 # logger = logging.getLogger(__name__)
 # logger.setLevel(logging.INFO)
 
-LOG_FILE = "/home/zhe030/zhe030/ZFW/Visual-RFT/logs/inference_rank_{rank}.log"
+LOG_FILE = "/home/zhe030/zhe030/ZFW/Visual-RFT/logs/inference_ferv39k_without_train_rank_{rank}.log"
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(message)s",
@@ -187,17 +187,17 @@ def remove_duplicates(bbox_list):
 # model_path = "./share_models/Qwen2-VL-2B-Instruct"
 # ori_processor_path = "./share_models/Qwen2-VL-2B-Instruct"
 
-model_path = "/home/zhe030/zhe030/ZFW/Visual-RFT/share_models/Qwen2.5-VL-3B-Instruct_GRPO_dfew_train_slurm"
+model_path = "/home/zhe030/zhe030/ZFW/Visual-RFT/share_models/Qwen2.5-VL-3B-Instruct" # "/home/zhe030/zhe030/ZFW/Visual-RFT/share_models/Qwen2.5-VL-3B-Instruct_GRPO_dfew_train_slurm"
 ori_processor_path = "/home/zhe030/zhe030/ZFW/Visual-RFT/share_models/Qwen2.5-VL-3B-Instruct"
-excel_path = "/home/zhe030/zhe030/ZFW/Visual-RFT/share_data/Inference_data/dfew_inference/valid_set_1_test_for_inference_add_width_height.xlsx"
-images_path  = "/home/zhe030/zhe030/ZFW/Visual-RFT/share_data/Inference_data/dfew_inference/dfew_resized_images/"
-def run(rank, world_size):
+excel_path = "/home/zhe030/zhe030/ZFW/Visual-RFT/share_data/Inference_data/ferv39k_inference/valid_valid_ferv39k_data_for_inference_add_width_height.xlsx"
+images_path  = "/home/zhe030/zhe030/ZFW/Visual-RFT/share_data/Inference_data/ferv39k_inference/ferv39k/"
+def run():
     # 1) Distributed setup
     # torch.cuda.init()
     rank, world_size, local_rank = setup_distributed()
     torch.cuda.set_device(local_rank)
     # 2) Load model + processor
-    # Qwen2_5_VLForConditionalGeneration #Qwen2VLForConditionalGeneration
+    # Qwen2_5_VLForConditionalGeneration # Qwen2VLForConditionalGeneration
     model = Qwen2_5_VLForConditionalGeneration.from_pretrained( 
         model_path,
         torch_dtype=torch.bfloat16,
@@ -208,14 +208,8 @@ def run(rank, world_size):
     model = model.to(f"cuda:{local_rank}")
     model = model.eval()
 
-     # Synchronize before data loading
+    # Synchronize before data loading
     # torch.distributed.barrier()
-
-    # with open('/scratch/kf09/zw4360/Visual-RFT/share_data/Inference_data/coco/annotations/instances_val2017.json', 'r') as json_file:
-    #     instances_val2017 = json.load(json_file)
-
-    # category_ids_2_categoty = {item['id']:item['name'] for item in instances_val2017['categories']}
-    # category_2_categoty_ids = {item['name']:item['id'] for item in instances_val2017['categories']}
     # 3) Read Excel and prep image paths
     df = pd.read_excel(excel_path)
     image_paths_temp = []
@@ -227,42 +221,22 @@ def run(rank, world_size):
         image_paths_temp.append(full_path)
 
     df["image_path"] = image_paths_temp
-
-    # df["image_path"] = df.apply(
-    #     lambda r: os.path.join(
-    #         images_path,
-    #         str(r["video_name"]),
-    #         f".jpg",
-    #     ),
-    #     axis=1,
-    # )
+    # add a column for the responses
+    df["full_response"] = None
     # Convert to list of dicts and shard across ranks
     records = df.to_dict(orient="records")
     split_records = records[rank::world_size]
+    indices = list(range(rank, len(df), world_size))
+    # make a copy for just this rank
+    df_rank = df.loc[indices].copy()
     logger.info(f"Rank {rank} will process {len(split_records)} frames")
 
     # # Create output file per rank
-    output_path = f'/home/zhe030/zhe030/ZFW/Visual-RFT/logs/each_predictions_rank_{rank}.jsonl'
-    # ### split val
-    # rank = rank
-    # world_size = world_size
-    # import math
-    # instances_val2017['images'] = instances_val2017['images']
-    # split_length = math.ceil(len(instances_val2017['images'])/world_size)
-    # # split_images = instances_val2017['images'][int(rank*split_length) : int((rank+1)*split_length)]
-
-    # split_images = instances_val2017['images'][rank::world_size]  # Strided slicing
-    # logger.info(f"Rank {rank} processing {len(split_images)} images")
-
+    output_path = f'/home/zhe030/zhe030/ZFW/Visual-RFT/logs/Ferv39k_without_train_each_predictions_rank_{rank}.jsonl'
 
     ### Traverse all images in val.
     error_count = 0
-    # bbox_count = 0
     pred_results = []
-    # if '2B' in model_path:
-    #     exist_cat = json.load(open("/scratch/kf09/zw4360/Visual-RFT/coco_evaluation/exist_map_coco_Qwen2_vl_2B_baseline.json", 'r'))
-    # elif '7B' in model_path:
-    #     exist_cat = json.load(open("/scratch/kf09/zw4360/Visual-RFT/coco_evaluation/exist_map_coco_Qwen2_vl_7B_baseline.json", 'r'))
     for rec in tqdm(split_records, desc=f"Rank {rank}"):
         log_2 = []
         image_path = rec["image_path"]
@@ -302,7 +276,7 @@ def run(rank, world_size):
                 return_tensors="pt",
             )
             inputs = inputs.to(model.device)
-            log_2.append(f"come to line 301 {image_path}")
+            log_2.append(f"{image_path}")
 
             # 4b) Inference: Generation of the output
             generated_ids = model.generate(**inputs, max_new_tokens=1024, use_cache=True)
@@ -312,10 +286,14 @@ def run(rank, world_size):
             response = processor.batch_decode(
                 generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
             )
-            print(315, response[0])
             response = response[0]
             full_response = response
-            logger.info(response, 293)
+            # write it back into df
+            # write back into the rank‐specific DataFrame
+            df_rank.loc[df_rank["image_path"] == image_path, "full_response"] = full_response
+            # df.loc[df["image_path"] == image_path, "full_response"] = full_response
+            # df[image_path] = full_response #### add full response to df
+            logger.info(response)
             # Fix possible formatting errors in the response.
             response = response.replace("[[",'[')
             response = response.replace("]]",']')
@@ -327,12 +305,13 @@ def run(rank, world_size):
             content_match = re.search(r'<answer>(.*?)</answer>', response)
             response = content_match.group(1).strip() if content_match else response.strip()
             response = '<answer>'+response+'</answer>'
-            log_2.append(f"come to line 325 {image_path}")
+            log_2.append(f"come to line 325 {full_response}")
+            # log_2.append(f"come to line 331 {response}")
 
             # extract bbox
             try:
                 bbox_list = extract_bbox(response)
-                log_2.append(f"come to line 330 {image_path}")
+                log_2.append(f"come to line 330 {image_path},{bbox_list}")
 
                 if bbox_list==None or type(bbox_list[0])==str:
                     pass
@@ -357,7 +336,7 @@ def run(rank, world_size):
                         logger.info('full response: '+str(full_response))
                         print(323, new_pred_dict)
                         # Save to JSON Lines file
-                        with open('/home/zhe030/zhe030/ZFW/Visual-RFT/predictions/each_predictions.jsonl', 'a') as f:
+                        with open('/home/zhe030/zhe030/ZFW/Visual-RFT/predictions/each_predictions_ferv39k_without_train.jsonl', 'a') as f:
                             json.dump(new_pred_dict, f)
                             f.write('\n')
                     log_2.append(f"come to line 357 {image_path}")
@@ -372,155 +351,12 @@ def run(rank, world_size):
         with open(output_path, 'a') as f:
             json.dump([log_2], f)
             f.write('\n')
+    # df.to_csv('/home/zhe030/zhe030/ZFW/Visual-RFT/predictions/dfew_inference_results.csv', index=False)
+    #  at the end, save out just this rank’s CSV
+    out_csv = f"/home/zhe030/zhe030/ZFW/Visual-RFT/predictions/ferv39k_without_train_csv/Ferv39k_without_train_inference_results_rank_{rank}.csv"
+    df_rank.to_csv(out_csv, index=False)
     return [error_count, pred_results]
     
-
-
-    # for image in tqdm(split_images, desc=f"Rank {rank}"):
-    #     # todo: log 1
-    #     log_1 = f"Processed by rank {rank}, image_id: {image['id']}, split_images: {split_images}"
-
-    #     image_id = image['id']
-    #     image_height = image['height']
-    #     image_width = image['width']
-    #     image_path = '/scratch/kf09/zw4360/Visual-RFT/share_data/Inference_data/coco/val2017/'+image['file_name']    ### Modify according to your own image path.
-
-    #     log_2 = []
-    #     ## Traverse all class in image.
-    #     for cate in exist_cat[str(image_id)]:
-    #         category = cate
-
-    #         log_2.append(f"cate in exist_cat {category}")
-
-    #         """
-    #         The following selection defines the range of test categories. The code with all comments tests all categories.
-    #         """
-    #         ### few-shot experiment: 8 classes
-    #         # selected_cate = ['bus', 'train', 'fire hydrant', 'stop sign', 'cat', 'dog', 'bed', 'toilet']
-    #         # if category not in selected_cate:
-    #         #     continue
-          
-    #         ### open vocabulary experiment:  15 new classes
-    #         # selected_cate = ['mouse', 'fork', 'hot dog', 'cat', 'airplane', 'suitcase', 'parking meter', 'sandwich', 'train', 'hair drier', 'toilet', 'toaster', 'snowboard', 'frisbee', 'bear']
-    #         selected_cate = ['mouse', 'cat', 'suitcase']
-
-    #         if category not in selected_cate:
-    #             continue
-
-
-    #         category_id = category_2_categoty_ids[category]
-            
-    #         log_2.append(f"come to 261 {image_id} and {category_id}")
-
-    #         question = (
-    #             f"Detect all objects belonging to the category '{category}' in the image, and provide the bounding boxes (between 0 and 1000, integer) and confidence (between 0 and 1, with two decimal places).\n"
-    #             f"If no object belonging to the category '{category}' in the image, return 'No Objects'.\n"
-    #             "Output the thinking process in <think> </think> and final answer in <answer> </answer> tags."
-    #             "The output answer format should be as follows:\n"
-    #             "<think> ... </think> <answer>[{'Position': [x1, y1, x2, y2], 'Confidence': number}, ...]</answer>\n"
-    #             "Please strictly follow the format."
-    #         )
-
-    #         image_path = image_path
-    #         query = '<image>\n' + question
-    #         # logger.info(RED+query+RESET)
-            
-    #         messages = [
-    #             {
-    #                 "role": "user",
-    #                 "content": [
-    #                     {"type": "image", "image": image_path}
-    #                 ] + [{"type": "text", "text": query}],
-    #             }
-    #         ]
-    #         log_2.append(f"come to 286 {image_id} and {category_id}")
-            
-    #         try:
-    #             # Preparation for inference
-    #             text = processor.apply_chat_template(
-    #                 messages, tokenize=False, add_generation_prompt=True
-    #             )
-    #             image_inputs, video_inputs = process_vision_info(messages)
-    #             inputs = processor(
-    #                 text=[text],
-    #                 images=image_inputs,
-    #                 videos=video_inputs,
-    #                 padding=True,
-    #                 return_tensors="pt",
-    #             )
-    #             inputs = inputs.to(model.device)
-    #             log_2.append(f"come to line 301 {image_id}")
-
-    #             # Inference: Generation of the output
-    #             generated_ids = model.generate(**inputs, max_new_tokens=1024, use_cache=True)
-    #             generated_ids_trimmed = [
-    #                 out_ids[len(in_ids) :] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
-    #             ]
-    #             response = processor.batch_decode(
-    #                 generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
-    #             )
-    #             print(315, response[0])
-    #             response = response[0]
-    #             full_response = response
-    #             logger.info(response, 293)
-    #             # Fix possible formatting errors in the response.
-    #             response = response.replace("[[",'[')
-    #             response = response.replace("]]",']')
-    #             response = response.replace("\n",'')
-    #             response = response.replace(", ...",'')
-    #             # logger.info("\033[92m" + response + "\033[0m")
-
-    #             # extract answer
-    #             content_match = re.search(r'<answer>(.*?)</answer>', response)
-    #             response = content_match.group(1).strip() if content_match else response.strip()
-    #             response = '<answer>'+response+'</answer>'
-    #             log_2.append(f"come to line 325 {image_id}")
-
-    #             # extract bbox
-    #             try:
-    #                 bbox_list = extract_bbox(response)
-    #                 log_2.append(f"come to line 330 {image_id}")
-
-    #                 if bbox_list==None or type(bbox_list[0])==str:
-    #                     pass
-    #                 else:
-    #                     bbox_list = remove_duplicates(bbox_list)
-    #                     log_2.append(f"come to line 336 {image_id}")
-
-    #                     for bbox in bbox_list:
-    #                         temp_bbox = trans_bbox(image_height, image_width, bbox['Position'])
-    #                         temp_confidence = bbox['Confidence']
-    #                         new_pred_dict = {
-    #                             'image_id': image_id,
-    #                             'category_id': category_id,
-    #                             'bbox': temp_bbox,
-    #                             'score': temp_confidence,
-    #                             'response': response,
-    #                             'full_response': full_response
-    #                         }
-    #                         pred_results.append(new_pred_dict)
-    #                         bbox_count += 1
-    #                         logger.info('bbox_count: '+str(bbox_count))
-    #                         logger.info('full response: '+str(full_response))
-    #                         print(323, new_pred_dict)
-    #                         # Save to JSON Lines file
-    #                         with open('/scratch/kf09/zw4360/Visual-RFT/predictions/Qwen2-VL-2B-Instruct_GRPO_coco_base65_dataset_change_back_grpo_train/each_predictions.jsonl', 'a') as f:
-    #                             json.dump(new_pred_dict, f)
-    #                             f.write('\n')
-    #                     log_2.append(f"come to line 357 {image_id}")
-    #             except Exception as e:
-    #                 log_2.append(f"has error 1 {image_id}")
-    #                 error_count+=1
-    #                 logger.info('Error number: ' + str(error_count)) 
-    #         except Exception as e:
-    #                 log_2.append(f"has error 2 {image_id}")
-    #                 error_count+=1
-    #                 logger.info('Error number: ' + str(error_count)) 
-    #     with open(output_path, 'a') as f:
-    #         json.dump([log_1, log_2], f)
-    #         f.write('\n')
-    # # torch.distributed.barrier()
-    # return [error_count, pred_results]
 
 def main():
     multiprocess = torch.cuda.device_count() >= 2
@@ -529,20 +365,21 @@ def main():
         logger.info('started generation')
         n_gpus = torch.cuda.device_count()
         world_size = n_gpus # n_gpus
-        with Pool(world_size) as pool:
-            func = functools.partial(run, world_size=world_size)
-            result_lists = pool.map(func, range(world_size))
+        result_lists = run()
+        # with Pool(world_size) as pool:
+        #     func = functools.partial(run, world_size=world_size)
+        #     result_lists = pool.map(func, range(world_size))
+        # logger.info(world_size)
+        # global_count_error = 0
+        # global_results = []
+        # for i in range(world_size):
+        #     global_count_error += int(result_lists[i][0])
+        #     global_results = global_results + result_lists[i][1]
 
-        global_count_error = 0
-        global_results = []
-        for i in range(world_size):
-            global_count_error += int(result_lists[i][0])
-            global_results = global_results + result_lists[i][1]
-
-        logger.info('Error number: ' + str(global_count_error))  
+        # logger.info('Error number: ' + str(global_count_error))  
         ### save path
-        with open('/home/zhe030/zhe030/ZFW/Visual-RFT/predictions/prediction_results.json', 'w') as json_file:
-            json.dump(global_results, json_file)
+        with open('/home/zhe030/zhe030/ZFW/Visual-RFT/predictions/prediction_results_ferv39k_without_train.json', 'w') as json_file:
+            json.dump(result_lists, json_file)
         logger.info("Done")
         logger.info('finished running')
     else:
